@@ -33,7 +33,8 @@ app.get("/index", function(req, res) {
 	res.render("index.ejs", {posts: posts});
 	console.log(req.body);
 	console.log(res.body);
-})
+});
+
 
 
 app.listen('3000')

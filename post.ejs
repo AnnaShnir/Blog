@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<head>
+	<title><%= post.title %></title>
+</head>
+<body>
+	<h1><%= post.title %></h1>
+	<a href="/post/<%= post.id %>/edit">edit this post</a>
+
+	<form method="POST" action="/post/<%= post.id %>?_method=DELETE">
+		<button>erase the entire post</button>
+	</form>
+</body>
+</html>

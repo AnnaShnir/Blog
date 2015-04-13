@@ -1,0 +1,1 @@
+INSERT INTO posts (title, post) VALUES ("Brooding roach", "Once upon a time, there lived a brooding roach");
