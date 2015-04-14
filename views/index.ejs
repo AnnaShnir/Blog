@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<body>
+    <h1>Home to all posts</h1>
+    <ul>
+
+        <% Object.keys(posts).forEach(function(key){ %>
+        <li><a href="/post/<%=posts[key].id %>"><%=posts[key].title %></a></li>
+        <% }) %>
+    </ul>
+    <a href="/post/new">Add a new post</a>
+</body>
+</html>
+

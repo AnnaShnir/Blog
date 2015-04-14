@@ -19,7 +19,7 @@ app.use(methodOverride('_method'))
 //allow sqlite3
 var sqlite3 = require('sqlite3').verbose();
 //set database
-// var db = new sqlite3.Database('./db/movies.db');
+var db = new sqlite3.Database('posts.db');
 //request
 var request = require('request')
 
@@ -29,11 +29,63 @@ var request = require('request')
 app.get('/', function(req, res){
 	res.redirect('/index')
 });
+
+// show all posts
 app.get("/index", function(req, res) {
-	res.render("index.ejs", {posts: posts});
-	console.log(req.body);
-	console.log(res.body);
+	db.all("SELECT * FROM posts;", function(err, data) {
+		if (err) {
+			console.log(err);
+		} else {
+			var posts = data;
+			console.log(posts);
+		}
+		res.render("index.ejs", {posts: posts});
+
+	});
+
 });
+
+//show one post from the database
+app.get("/post/:id", function(req, res) {
+	var id = req.params.id
+	db.get("SELECT * FROM posts WHERE id = ?", id, function(err, data) {
+		console.log(data);
+		res.render("post.ejs")
+	});
+});
+
+//serve a new page to create a blog post
+app.get("/posts/new", function(req, res) {
+	res.render("new.ejs");
+});
+//create a new post from form
+app.post("/posts/new", function(req, res) {
+	console.log(req.body);
+	db.add("INSERT INTO posts (title, post) VALUES (?, ?)", function(err, data) {
+		console.log(data);
+	});
+	res.redirect("/");  //to the main page after the post has been submitted
+});
+
+//edit existing post from the database, serving the edit page first
+
+
+// delete post
+app.delete("post/id:", function(req, res) {
+	db.delete("DELETE FROM posts WHERE title = ?", function(err, data) {
+		console.log(data);
+	});
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
