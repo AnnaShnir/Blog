@@ -1,7 +1,11 @@
 DROP TABLE IF EXISTS posts;
 CREATE TABLE posts (
   id INTEGER PRIMARY KEY,
-  title TEXT, post TEXT,
+  user TEXT,
+  author TEXT,
+  title TEXT, 
+  post TEXT,
+  tag TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

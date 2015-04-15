@@ -61,7 +61,7 @@ app.get("/posts/new", function(req, res) {
 //create a new post from form
 app.post("/posts/new", function(req, res) {
 	console.log(req.body);
-	db.add("INSERT INTO posts (title, post) VALUES (?, ?)", function(err, data) {
+	db.add("INSERT INTO posts (user, author, title, post, tag) VALUES (?, ?, ?, ?, ?)", function(err, data) {
 		console.log(data);
 	});
 	res.redirect("/");  //to the main page after the post has been submitted
@@ -90,4 +90,4 @@ app.delete("post/id:", function(req, res) {
 
 
 app.listen('3000')
-console.log("Listening on port 3000")
+console.log("the humming of nature on a warm spring evening is actually the sound of thousands of insects trying to find a mate")
