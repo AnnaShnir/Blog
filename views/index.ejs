@@ -4,7 +4,7 @@
     <ul>
 
         <% Object.keys(posts).forEach(function(key){ %>
-        <li><a href="/post/<%=posts[key].id %>"><%=posts[key].title %></a></li>
+        <li><a href="/posts/<%=posts[key].id %>"><%=posts[key].title %></a></li>
         <% }) %>
     </ul>
     <a href="/post/new">Add a new post</a>

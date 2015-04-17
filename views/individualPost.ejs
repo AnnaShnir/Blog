@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+<p>What in the world has brought you to this rabbit-hole?</p>
+	<p><text="/posts/<%=post.id%>"><%=post.post %></p>
+
+<form method="GET", action="/post/<%=post.id %>">
+
+<a href="/index">Back to Main page</a>
+<br/>
+<a href="/editPost/<%=post.id %>">Edit this post</a>
+
+
+
+</body>
+</html>

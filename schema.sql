@@ -13,3 +13,9 @@ CREATE TABLE posts (
 CREATE TRIGGER timestamp_update BEFORE UPDATE ON posts BEGIN
   UPDATE posts SET updated_at = CURRENT_TIMESTAMP WHERE id = new.id;
 END;
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+id INTEGER PRIMARY KEY,
+user TEXT,
+author, TEXT );

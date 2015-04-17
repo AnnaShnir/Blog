@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+
+<form action="/update/<%=post.id %>?_method=PUT" method="POST">
+<input type="text" name="title" value="<%- post.title %>" required><br />
+<textarea name="body" required>
+<%- post.post %>
+</textarea><br />
+<button>Edit this post</button>
+</form>
+
+	<form method="POST" action="/post/<%= post.id %>?_method=DELETE">
+		<button>erase the entire post</button>
+	</form>
+</body>
+</html>
