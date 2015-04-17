@@ -4,10 +4,11 @@
 </head>
 <body>
 
-<form action="/update/<%=post.id %>?_method=PUT" method="POST">
+<form action="/editPost/<%=post.id %>?_method=PUT" method="POST">
 <input type="text" name="title" value="<%- post.title %>" required><br />
-<textarea name="body" required>
-</textarea><br />
+<!-- <input type="text" name ="post" value="<%- post.post %>" required> -->
+<input type="textarea" name="post" value="<%- post.post %>"required>
+<br />
 <button>Edit this post</button>
 </form>
 

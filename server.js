@@ -55,10 +55,9 @@ app.post("/newUser", function(req, res) {
 	var currentUser = req.body.users
 	console.log(currentUser);
 	res.redirect("/index");
-	// show all post
+	// show all posts
 	});
-	// //create entirely new post
-	// app.post("/new", function (req, res))
+
 
 app.get("/index", function (req, res) {
 	db.all("SELECT * FROM posts;", function (err, data) {
@@ -99,35 +98,34 @@ app.get("/editPost/:id", function (req, res) {
 //edit the post
 app.put("/editPost/:id", function (req, res) {
 	var id = req.params.id;
+	var body = req.body.post;
+	var title = req.body.title;
 
-	db.run("UPDATE posts SET user = ?, author = ?, title = ?, post = ?, tag = ? WHERE id = ?", id,  function(err, data) {
-		console.log(data)
-		res.render("editPost.ejs", { post: data });
+	db.run("UPDATE posts SET title = ?, post = ? WHERE id = ?", title, body, id, function(err, data) {
+		// console.log(data)
+		res.redirect("/index");
 	});
 });
 
+
 //serve a new page to create a blog post
-app.get("/posts/new", function(req, res) {
+app.get("/post/new", function(req, res) {
 	res.render("new.ejs");
 });
 
-
-
-
 //create a new post from form
-app.post("/posts/new", function(req, res) {
+app.post("/post/new", function(req, res) {
 	console.log(req.body);
-	db.add("INSERT INTO posts (user, author, title, post, tag) VALUES (?, ?, ?, ?, ?)", function(err, data) {
+	db.add("INSERT INTO posts (title, post, tag) VALUES (?, ?, ?)", title, post, tag,
+		function(err, data) {
 		console.log(data);
-	});
-	res.redirect("/");  //to the main page after the post has been submitted
+		res.redirect("/index");
+	});  //to the main page after the post has been submitted
 });
-
-//edit existing post from the database, serving the edit page first
 
 
 // delete post
-app.delete("/post/:id", function(req, res) {
+app.delete("/editPost/:id", function(req, res) {
 	var id = req.params.id;
 console.log('DELETE!')
 	db.run("DELETE FROM posts WHERE id = ?", id, function(err, data) {
@@ -148,4 +146,4 @@ console.log('DELETE!')
 
 
 app.listen('3000')
-console.log("the humming of nature on a warm spring evening is actually the sound of thousands of insects trying to find a mate")
+console.log("the humming of nature on a warm spring evening is actually the sound of thousands of insects trying to find a mate");
