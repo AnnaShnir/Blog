@@ -114,11 +114,13 @@ app.get("/post/new", function(req, res) {
 });
 
 //create a new post from form
-app.post("/post/new", function(req, res) {
+app.post("/new", function(req, res) {
+	var title=req.body.title;
+	var post=req.body.post;
+	var tag=req.body.tag;
 	console.log(req.body);
-	db.add("INSERT INTO posts (title, post, tag) VALUES (?, ?, ?)", title, post, tag,
-		function(err, data) {
-		console.log(data);
+	db.run("INSERT INTO posts (title, post, tag) VALUES (?, ?, ?)", title, post, tag,
+		function(err) {
 		res.redirect("/index");
 	});  //to the main page after the post has been submitted
 });
