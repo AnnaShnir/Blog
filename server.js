@@ -16,8 +16,6 @@ var methodOverride = require('method-override')
 //tell app which override method to use
 app.use(methodOverride('_method'))
 
-//app.use(express.cookieParser('S3CRE7'));
-//app.use(express.cookieSession());
 
 //allow sqlite3
 var sqlite3 = require('sqlite3').verbose();
@@ -28,17 +26,16 @@ var request = require('request')
 
 //routes
 
+
 app.get("/", function(req, res) {
 	res.redirect("/newUser");
 });
 
+
 //serve a page to create new user or choose the existing one
 app.get("/newUser", function(req, res) {
-		//if dropdown is selected, choose this used id and and assign a temporary variable that will carry throughout the session
-		//if all new user fields have input, "create new user button" can be pushed, thereby adding a new user into the list;
-		//select from database all users and have them as objects in the array
 		//loop through the user array in the dropdown menu
-		db.all("SELECT user FROM posts", function(err, data) {
+		db.all("SELECT user FROM users", function(err, data) {
 			if (err) {
 				console.log(err);
 			} else {
@@ -52,11 +49,21 @@ app.get("/newUser", function(req, res) {
 
 
 app.post("/newUser", function(req, res) { 
-	var currentUser = req.body.users
-	console.log(currentUser);
-	res.redirect("/index");
-	// show all posts
-	});
+	var currentUser = req.body.users;
+	var user = req.body.newcritter;
+	var id = req.params.id;
+
+	if (req.body.newcritter != null && req.body.newcritter !="") {
+		db.run("INSERT INTO users (user) VALUES ( ?)", user, function(err, data) {
+			// console.log(data)
+			res.redirect("/index");
+		});
+	} else {
+		db.all("SELECT user FROM users WHERE id =?", id, function(err, data) {
+			res.redirect("/index");
+		});
+	}
+});
 
 
 app.get("/index", function (req, res) {
@@ -78,10 +85,11 @@ app.get("/index", function (req, res) {
 //show one post from the database
 app.get("/posts/:id", function (req, res) {
 	var id = req.params.id;
-	db.get("SELECT * FROM posts Where id = ?", id, function(err, data) {
+	db.get("SELECT posts.id, posts.post, users.user FROM posts, users Where posts.id = ? AND users.id = posts.user_id", id, function(err, data) {
 		res.render("individualPost.ejs", { post: data})
 	});
 });
+
 
 //updating posts, first serve an update page, the app.put to edit the actual post
 app.get("/editPost/:id", function (req, res) {
@@ -94,7 +102,6 @@ app.get("/editPost/:id", function (req, res) {
 });
 
 
-	
 //edit the post
 app.put("/editPost/:id", function (req, res) {
 	var id = req.params.id;
@@ -110,16 +117,29 @@ app.put("/editPost/:id", function (req, res) {
 
 //serve a new page to create a blog post
 app.get("/post/new", function(req, res) {
-	res.render("new.ejs");
+	db.all("SELECT * FROM users;", function (err, data) {
+		if (err) {
+			console.log(err);
+		} else {
+			var users = data;
+		}
+
+		res.render("new.ejs", {users: users});
+	});
+
 });
+
 
 //create a new post from form
 app.post("/new", function(req, res) {
 	var title=req.body.title;
 	var post=req.body.post;
 	var tag=req.body.tag;
+	var user = req.body.user;
+
 	console.log(req.body);
-	db.run("INSERT INTO posts (title, post, tag) VALUES (?, ?, ?)", title, post, tag,
+	
+	db.run("INSERT INTO posts (user_id, title, post, tag) VALUES (?, ?, ?, ?)", user, title, post, tag,
 		function(err) {
 		res.redirect("/index");
 	});  //to the main page after the post has been submitted
@@ -129,19 +149,11 @@ app.post("/new", function(req, res) {
 // delete post
 app.delete("/editPost/:id", function(req, res) {
 	var id = req.params.id;
-console.log('DELETE!')
+	console.log('DELETE!')
 	db.run("DELETE FROM posts WHERE id = ?", id, function(err, data) {
-		console.log(data);
+		res.redirect("/index");
 	});
 });
-
-
-
-
-
-
-
-
 
 
 

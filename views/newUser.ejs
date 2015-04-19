@@ -3,10 +3,9 @@
     <h1>Blogging:<br /> never in history of humanity so many people had so much to say  <br />
     to so few and about so little...</h1>
     <hr />
-    <h2>Select a user or create a new one</h2>
 	
 <form method="POST" action="/newUser">
-	<p>Been here before? (select an existing user)</p>
+	<p>Pick a critter</p>
 	<select name="users">
 
 <!-- 	//the following loop is for an array, no need for Objects.key -->
@@ -17,7 +16,13 @@
 	 </option>
 	</select>
 
-<button>This is me</button>
+<button>Kafka me!</button>
+
+	<p>Add a critter</p>
+	<input type="text" name="newcritter" placeholder="new insect" size="15" />
+
+<button>add to insectarium</button>
+
 
 </form>
 </body>

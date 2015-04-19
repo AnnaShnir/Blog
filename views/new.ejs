@@ -1,15 +1,3 @@
-<!-- <!DOCTYPE html>
-<body>
-	<h1>Add a new post</h1>
-	
-	<form action="/posts" method="POST">
-		<input type="text" name="title" required>
-		<input type="text" name="post" placeholder="start blogging here" required>
-		<button>Save Post</button>
-	</form>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <head>Create New Post
 </head>
@@ -20,6 +8,13 @@
 <input type="textarea" name="post" placeholder="add your buzz here" required>
 <br/>
 <input type="textarea" name="tag" placeholder="tag" required>
+<br/>
+<select name="user">
+<% users.forEach(function(key){ %>
+<option value="<%=key.id %>"><%=key.user %>
+<% }) %>
+</option>
+</select>
 <br/>
 <button>Save post</button>
 </form>
