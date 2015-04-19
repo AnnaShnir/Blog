@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <head>
+
+<style type="text/css">
+	body {
+		text-align: justify;
+	}
+
+	p {
+		padding-left: 120px;
+		padding-right: 120px;
+		font-size: 20px;
+	}
+
+	p:first-letter {
+		font-size: 200%;
+	}
+
+	a:hover {
+		font-weight: bold; 
+	}
+
+</style>
+<h1> <img src="http://olddesignshop.com/wp-content/uploads/2012/08/OldDesignShop_WaspAndBee1a-1896.jpg" width="320" height="120" /></h1>
 </head>
 <body>
-<p>What in the world has brought you to this rabbit-hole?</p>
-<a href="/index">Back to Main page</a>
+
 
 	<p><text="/posts/<%=post.id%>"><%=post.post %></p>
 	<p><%= post.user %></p>
 
 <form method="GET", action="/post/<%=post.id %>">
 <br/>
+<a href="/index">Back to Main page</a>
+<br/>
 <a href="/editPost/<%=post.id %>">Edit this post</a>
 
-
+<h2> <img src="http://olddesignshop.com/wp-content/uploads/2012/08/OldDesignShop_WaspAndBee2a-1896.jpg" width="320" height="120" align="right">
 
 </body>
 </html>
