@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<head>Create New Post
+<head>
+<link rel="stylesheet" type="text/css" href="<link href='http://fonts.googleapis.com/css?family=Pinyon+Script">
+<style type="text/css">
+	body {
+		font-size: 30px;
+
+	}
+
+	input {
+		font-size: 30px;
+	}
+
+
+</style>
 </head>
 <body>
 <form action="/new" method="POST">
 <input type="text" name="title" value="text" required>
 <br/>
-<input type="textarea" name="post" value="text" required>
+<input type="textarea" name="post" value="text" cols="30" rows="12" required>
 <input type="textarea" name="tag" value="text" required>
 <br/>
 </form>

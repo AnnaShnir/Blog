@@ -75,7 +75,7 @@ app.get("/index", function (req, res) {
 				// console.log(posts);
 			}
 
-			res.render("index.ejs", {posts: posts});
+			res.render("index.ejs", { posts: posts });
 	});
 
 });

@@ -1,18 +1,12 @@
-# Blog
-A user can create a new micro_post
-A user can add an author to a micro_post when creating it
-A user can show (ie, see) a given micro_post
-A user can see all of the micro_posts as a feed (/feed)
-A user can add a snippet - a link to a micro_post, similar to how Facebook handles links. it shows you some limited information about it, but clicking it will take you to the full article.
-A user can add a "topic" or "hashtag" to a micro_post as a tag
-This should be optional to do and the choice of tag is up to the user. Not having a tag for the post should NOT break the application.
-Tags can be edited and deleted.
-When a user creates a micro_post they can create a new author or choose a pre-existing one from a drop-down menu
-A user can view an author's page that lists the micro_posts that they have created or edited
-A user (author) will receive an email when a new micro_post is created or edited
-This email should at least contain the title of the new micro_post
-A user can view micro_posts posts by author (authors/authorhandle/posts)
-A user can view micro_posts posts by tag (tag/tagname/posts)
+# The Hive
+
+Hive is a CRUD blogging app. It is a place where
+User can enter under the disguise of an insect pseudonym;
+User can view all created posts by other insects;
+User can edit the existing posts;
+User can create a new post;
+The main page (The Hive itself) showcases every post - it's title is a clickable link and the snippet for each post displays a little snapshot from the beginning of the post.
+The Hive is hosted on Digital Ocean: http://45.55.139.174:3000/
 
 
 Here is a link to TRELLO, where I manage the workflow:
@@ -26,7 +20,14 @@ method-Override
 sqlite3
 request
 
-Generous thanks to Sendgrid for providing a free 400e-mail/day service. Their API lives here:
+
+### Considerations for enhancement:
+add password log-in for users, allow posting under pseudoyms only when password is verified.
+Constant design work is a must!
+A user can view an author's page that lists the posts that they have created or edited.
+
+
+Generous thanks to Sendgrid for providing no support whatsoever for their free service. Their API supposedly lives here:
 https://sendgrid.com/docs/API_Reference/Web_API/using_the_web_api.html
 
 

@@ -29,7 +29,9 @@
     <ul>
 
         <% Object.keys(posts).forEach(function(key){ %>
-        <li><a href="/posts/<%=posts[key].id %>"><%=posts[key].title %></a></li>
+        <li><a href="/posts/<%=posts[key].id %>"><%=posts[key].title %></a>
+        <p> <%= posts[key].post.substring(0, 100) %>...</p>
+        </li>
         <% }) %>
     </ul>
     <a href="/post/new">Add a new post</a>

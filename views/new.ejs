@@ -1,13 +1,53 @@
 <!DOCTYPE html>
-<head>Create New Post
+<head>
+<link rel="stylesheet" type="text/css" href="<link href='http://fonts.googleapis.com/css?family=Pinyon+Script">
+<style type="text/css">
+	body {
+		background-image: url("http://3.bp.blogspot.com/-mb1PRKOdK4w/Te0Z8QeGm-I/AAAAAAAAOGg/yi9hrU9Kiho/s1600/spiderweb3.jpg");
+		background-size: cover;
+
+		font-size: 30px;
+	}
+
+	input {
+		font-size: 20px;
+		margin: 20px;
+		border-radius: 8%;
+		background-color: White;
+		opacity: 0.9;
+	}
+
+	button {
+		margin: 20px;
+		font-size: 20px;
+		font-family: "Pinyon Script", cursive;
+		font-weight: medium;
+		border-radius: 6%;
+	}
+
+	select {
+		margin: 20px;
+	}
+
+	textarea {
+		margin: 20px;
+		border-radius: 6%;
+		background-color: White;
+		opacity: 0.9;
+		font-size: 16px;
+	}
+
+
+</style>
 </head>
 <body>
 <form action="/new" method="POST">
 <input type="text" name="title" placeholder="title" required>
 <br/>
-<input type="textarea" name="post" placeholder="add your buzz here" required>
+<!-- <input type="textarea" name="post" placeholder="add your buzz here" required> -->
+<textarea name="post" cols="80" rows="12" required> </textarea>
 <br/>
-<input type="textarea" name="tag" placeholder="tag" required>
+<input type="textarea" name="tag" placeholder="tags" required>
 <br/>
 <select name="user">
 <% users.forEach(function(key){ %>
